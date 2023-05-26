@@ -16,8 +16,10 @@ connectionUserCount.on("updateTotalUsers", (value) => {
 });
 
 function newWindowLoadedOnClient() {
-    connectionUserCount.send("NewWindowLoaded");
+    //connectionUserCount.send("NewWindowLoaded");  // send vs invoke
+    connectionUserCount.send("NewWindowLoaded", "Bhrugen").then((value) => console.log(value));
 }
+
 
 //start connection
 function fulfilled() {
