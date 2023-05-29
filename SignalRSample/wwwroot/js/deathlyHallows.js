@@ -18,11 +18,21 @@ connectionDeathlyHallows.on("updateDealthyHallowCount", (cloak, stone, wand) => 
 
 
 //invoke hub methods aka send notification to hub
-
+function newWindowLoadedOnClientDeathlyHallows() {
+    //connectionUserCount.send("NewWindowLoaded");  // send vs invoke
+    connectionDeathlyHallows
+        .send("NewWindowLoaded");
+        //.then((value) => {
+        //    console.log(value);
+        //    cloakSpan.innerText = value.cloak.toString();
+        //    stoneSpan.innerText = value.stone.toString();
+        //    wandSpan.innerText = value.wand.toString();});
+}
 //start connection
 function fulfilled() {
     //do something on start
     console.log("Connection to User Hub Successful");
+    newWindowLoadedOnClientDeathlyHallows()
 }
 function rejected() {
     //rejected logs
