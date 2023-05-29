@@ -1,6 +1,8 @@
-﻿namespace SignalRSample.Hubs
+﻿using Microsoft.AspNetCore.SignalR;
+
+namespace SignalRSample.Hubs
 {
-    public class DeathlyHallowsHub
+    public class DeathlyHallowsHub:Hub
     {
         public Dictionary<string, int> GetRaceStatus()
         {
