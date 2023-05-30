@@ -13,7 +13,7 @@ namespace SignalRSample.Hubs
                 GroupsJoined.Add(Context.ConnectionId + ":" + houseName);
                 
                 //do something else
-
+                //Here to get a list of all subscribed house name, and display on the top
                 string houseList = "";
                 foreach (var str in GroupsJoined)
                 {
@@ -23,7 +23,7 @@ namespace SignalRSample.Hubs
                     }
                 }
 
-                await Clients.Caller.SendAsync("subscriptionStatus", houseList, houseName, true);
+                await Clients.Caller.SendAsync("subscriptionStatus", houseList, houseName.ToLower(), true);
                 // Groups here is a 'group manager'
                 await Groups.AddToGroupAsync(Context.ConnectionId, houseName);
             }
@@ -46,7 +46,7 @@ namespace SignalRSample.Hubs
                     }
                 }
 
-                await Clients.Caller.SendAsync("subscriptionStatus", houseList, houseName, false);
+                await Clients.Caller.SendAsync("subscriptionStatus", houseList, houseName.ToLower(), false);
 
                 await Groups.RemoveFromGroupAsync(Context.ConnectionId, houseName);
             }
