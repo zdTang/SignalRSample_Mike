@@ -24,10 +24,13 @@ namespace SignalRSample.Hubs
                 }
 
                 await Clients.Caller.SendAsync("subscriptionStatus", houseList, houseName.ToLower(), true);
+
+                await Clients.Others.SendAsync("someoneJoinSomewhere", houseName.ToLower());
                 // Groups here is a 'group manager'
                 await Groups.AddToGroupAsync(Context.ConnectionId, houseName);
             }
         }
+        
 
         public async Task LeaveHouse(string houseName)
         {
@@ -47,7 +50,7 @@ namespace SignalRSample.Hubs
                 }
 
                 await Clients.Caller.SendAsync("subscriptionStatus", houseList, houseName.ToLower(), false);
-
+                await Clients.Others.SendAsync("someoneRemovedSomewhere", houseName.ToLower());
                 await Groups.RemoveFromGroupAsync(Context.ConnectionId, houseName);
             }
         }

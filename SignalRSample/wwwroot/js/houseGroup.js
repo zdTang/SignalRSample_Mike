@@ -113,8 +113,14 @@ connectionHouse.on("subscriptionStatus", (strGroupsJoined, houseName, hasSubscri
     }
 
 })
+//someoneJoinSomewhere
+connectionHouse.on("someoneJoinSomewhere", (houseName) => {
+    toastr.success(`someone has subscribed ${houseName}`);
+});
 
-
+connectionHouse.on("someoneRemovedSomewhere", (houseName) => {
+    toastr.warning(`someone has subscribed ${houseName}`);
+});
 
 //start connection
 function fulfilled() {
