@@ -51,6 +51,7 @@ namespace SignalRSample
 
             app.MapHub<UserHub>("/hubs/userCount");
             app.MapHub<DeathlyHallowsHub>("hubs/deathyhallows");
+            app.MapHub<HouseGroupHub>("/hubs/houseGroup");
 
             app.Run();
         }
